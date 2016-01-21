@@ -25,6 +25,14 @@ var MessageComposer = React.createClass({
     return {text: ''};
   },
 
+componentDidMount: function() {
+var count =0;
+setInterval(function() {
+count++;
+ChatMessageActionCreators.createMessage(count, 't_3');
+}, 0);
+},
+
   render: function() {
     return (
       <textarea
