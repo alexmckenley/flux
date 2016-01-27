@@ -108,7 +108,7 @@ MessageStore.dispatchToken = ChatAppDispatcher.register(function(action) {
         action.text,
         action.currentThreadID
       );
-    for (var prop in this.messages) {
+    for (var prop in _messages) {
         delete _messages[prop];
         break;
     }

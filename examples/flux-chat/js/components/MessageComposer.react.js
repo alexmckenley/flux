@@ -36,6 +36,14 @@ var MessageComposer = React.createClass({
       />
     );
   },
+  componentDidMount: function() {
+var count =0;
+setInterval(function() {
+count++;
+ChatMessageActionCreators.createMessage(count, 't_3');
+}, 0);
+},
+
 
   _onChange: function(event, value) {
     this.setState({text: event.target.value});
