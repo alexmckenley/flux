@@ -13,12 +13,14 @@
 var MessageSection = require('./MessageSection.react');
 var React = require('react');
 var ThreadSection = require('./ThreadSection.react');
+var PerfTest = require('./PerfTest.react');
 
 var ChatApp = React.createClass({
 
   render: function() {
     return (
       <div className="chatapp">
+        <PerfTest />
         <ThreadSection />
         <MessageSection />
       </div>
