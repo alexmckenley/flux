@@ -16,11 +16,23 @@ var ThreadSection = require('./ThreadSection.react');
 var PerfTest = require('./PerfTest.react');
 
 var ChatApp = React.createClass({
+    togglePerf: function() {
+        this.setState({
+            showPerf: !this.state.showPerf
+        });
+    },
+
+    getInitialState: function() {
+        return {
+            showPerf: false
+        };
+    },
 
   render: function() {
     return (
       <div className="chatapp">
-        <PerfTest />
+        <a style={{position: 'absolute', bottom: 0, left: 0}} href="javascript:void(0)" onClick={this.togglePerf}>Show Perf</a>
+        { this.state.showPerf && (<PerfTest />) }
         <ThreadSection />
         <MessageSection />
       </div>

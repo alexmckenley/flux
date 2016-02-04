@@ -12,6 +12,8 @@
 
 var React = require('react');
 var PerfStore = require('../stores/PerfStore');
+var ChatMessageActionCreators = require('../actions/ChatMessageActionCreators');
+var interval;
 
 function getStateFromStores() {
   return {
@@ -26,11 +28,19 @@ var PerfTest = React.createClass({
   },
 
   componentDidMount: function() {
+    var count = 0;
+
     PerfStore.addChangeListener(this._onChange);
+
+    interval = setInterval(function() {
+        count++;
+        ChatMessageActionCreators.createMessage(count, 't_3');
+    }, 10);
   },
 
   componentWillUnmount: function() {
     PerfStore.removeChangeListener(this._onChange);
+    clearInterval(interval);
   },
 
   render: function() {
