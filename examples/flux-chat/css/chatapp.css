@@ -97,3 +97,11 @@
   margin: 20px 0 0;
   padding: 10px;
 }
+
+.perfTest-message {
+    font-size: 5rem;
+}
+
+.perfTest-label {
+    font-size: 2rem;
+}

@@ -13,7 +13,7 @@
 var React = require('react');
 var PerfStore = require('../stores/PerfStore');
 var ChatMessageActionCreators = require('../actions/ChatMessageActionCreators');
-var interval;
+var interval, interval2;
 
 function getStateFromStores() {
   return {
@@ -24,37 +24,39 @@ function getStateFromStores() {
 var PerfTest = React.createClass({
 
   getInitialState: function() {
-    return getStateFromStores();
+      return {
+        messagesPerSecond: 0,
+      };
   },
 
   componentDidMount: function() {
     var count = 0;
-
-    PerfStore.addChangeListener(this._onChange);
+    var _this = this;
 
     interval = setInterval(function() {
         count++;
         ChatMessageActionCreators.createMessage(count, 't_3');
     }, 10);
+
+    interval2 = setInterval(function() {
+        _this._update();
+    }, 500);
   },
 
   componentWillUnmount: function() {
-    PerfStore.removeChangeListener(this._onChange);
     clearInterval(interval);
+    clearInterval(interval2);
   },
 
   render: function() {
     return (
         <section className="perfTest">
-            <p className="perfTest-message">Messages per second: { this.state.messagesPerSecond }</p>
+            <p className="perfTest-message"><span className="perfTest-label">Messages per second:</span> { Math.floor(this.state.messagesPerSecond) }</p>
         </section>
     );
   },
 
-  /**
-   * Event handler for 'change' events coming from the stores
-   */
-  _onChange: function() {
+  _update: function() {
     this.setState(getStateFromStores());
   }
 
