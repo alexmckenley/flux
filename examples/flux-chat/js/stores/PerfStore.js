@@ -20,6 +20,7 @@ var CHANGE_EVENT = 'change';
 
 var perfAverage = null;
 var perfLast = null;
+var totalMessages = 0;
 var _lastMessage = null;
 
 var PerfStore = assign({}, EventEmitter.prototype, {
@@ -45,6 +46,10 @@ var PerfStore = assign({}, EventEmitter.prototype, {
 
     getAverageMessagesPerSecond: function() {
         return 1000 / perfAverage;
+    },
+
+    getTotalMessages: function() {
+        return totalMessages;
     }
 });
 
@@ -61,6 +66,8 @@ PerfStore.dispatchToken = ChatAppDispatcher.register(function(action) {
             }
 
             _lastMessage = currentTime;
+
+            totalMessages += 1;
 
             perfAverage = perfAverage ? ((perfAverage + millis) / 2) : millis;
             perfLast = millis;

@@ -32,7 +32,7 @@ var ChatApp = React.createClass({
     return (
       <div className="chatapp">
         <a style={{position: 'absolute', bottom: 0, left: 0}} href="javascript:void(0)" onClick={this.togglePerf}>Show Perf</a>
-        { this.state.showPerf && (<PerfTest />) }
+        { !this.state.showPerf && (<PerfTest />) }
         <ThreadSection />
         <MessageSection />
       </div>

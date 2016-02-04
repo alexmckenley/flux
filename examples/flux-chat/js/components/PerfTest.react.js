@@ -17,7 +17,8 @@ var interval, interval2;
 
 function getStateFromStores() {
   return {
-    messagesPerSecond: PerfStore.getMessagesPerSecond(),
+    messagesPerSecond: PerfStore.getAverageMessagesPerSecond(),
+    totalMessages: PerfStore.getTotalMessages(),
   };
 }
 
@@ -26,6 +27,7 @@ var PerfTest = React.createClass({
   getInitialState: function() {
       return {
         messagesPerSecond: 0,
+        totalMessages: 0,
       };
   },
 
@@ -52,6 +54,7 @@ var PerfTest = React.createClass({
     return (
         <section className="perfTest">
             <p className="perfTest-message"><span className="perfTest-label">Messages per second:</span> { Math.floor(this.state.messagesPerSecond) }</p>
+            <p className="perfTest-message"><span className="perfTest-label">Total messages:</span> { Math.floor(this.state.totalMessages) }</p>
         </section>
     );
   },

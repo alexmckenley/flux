@@ -99,7 +99,9 @@
 }
 
 .perfTest-message {
-    font-size: 5rem;
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .perfTest-label {
